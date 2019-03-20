@@ -5,6 +5,7 @@ MAINTAINER Barrett Ames <cbames@gmail.com>
 Run pip install gym pyopengl
 
 RUN apt-get update && \
+    apt-get install -y python-opengl python3-opengl &&\
     apt-get -y install xvfb x11vnc fluxbox wmctrl && \ 
     apt-get clean && \
     rm -r /var/lib/apt/lists/* /root/.cache/pip/
@@ -17,6 +18,7 @@ EXPOSE 6006
 EXPOSE 5900 
 
 COPY run.sh /
-CMD ["/run.sh", "--allow-root"]
+RUN chmod +x /run.sh
 
+CMD ["/run.sh", "--allow-root"]
 
